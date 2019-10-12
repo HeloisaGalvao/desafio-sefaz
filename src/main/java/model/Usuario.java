@@ -2,12 +2,25 @@ package model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+
+@Entity
 public class Usuario {
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 	private String nome;
 	private String email;
 	private String senha;
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name="usuario_id")
 	private List<Telefone> telefone;
 	
 	public Usuario() {
