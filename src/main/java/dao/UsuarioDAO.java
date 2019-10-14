@@ -1,16 +1,14 @@
 package dao;
 
-import java.util.List;
+import javax.ejb.Stateless;
 
 import model.Usuario;
 
-public interface UsuarioDAO {
+@Stateless
+public class UsuarioDAO extends AbstractDAO<Usuario>{
 
-
-	public void incluir(Usuario usuario);
-	public void alterar(Usuario usuario);
-	public void excluir(Integer idUsuario);
-	public Usuario consultarPorId(Integer idUsuario);
-	public Usuario consultarPorEmail(String email);
-	public List<Usuario> listarTodos();
+	public UsuarioDAO() {
+		super(Usuario.class);
+	}
+	
 }

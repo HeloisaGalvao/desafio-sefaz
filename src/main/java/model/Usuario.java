@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -9,29 +10,39 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 
 @Entity
-public class Usuario {
+public class Usuario implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
+	@NotNull
 	private String nome;
+	@NotNull
 	private String email;
+	@NotNull
 	private String senha;
+	
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name="usuario_id")
-	private List<Telefone> telefone;
+	@NotNull
+	private List<Telefones> telefones;
 	
 	public Usuario() {
 	}
 
-	public Usuario(Integer id, String nome, String email, String senha, List<Telefone> telefone) {
+	public Usuario(Integer id, String nome, String email, String senha, List<Telefones> telefone) {
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
 		this.senha = senha;
-		this.telefone = telefone;
+		this.telefones = telefone;
 	}
 
 	public Integer getId() {
@@ -66,12 +77,12 @@ public class Usuario {
 		this.senha = senha;
 	}
 	
-	public List<Telefone> getTelefone() {
-		return telefone;
+	public List<Telefones> getTelefones() {
+		return telefones;
 	}
 	
-	public void setTelefone(List<Telefone> telefone) {
-		this.telefone = telefone;
+	public void setTelefone(List<Telefones> telefones) {
+		this.telefones = telefones;
 	}
 	
 }
